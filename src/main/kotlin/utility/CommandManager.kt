@@ -15,7 +15,8 @@ class CommandManager(private var helpCommand: Command,
                      private var addIfMinCommand: Command,
                      private var averageCommand: Command,
                      private var countGenreGreaterCommand: Command,
-                     private var printOscarsCountCommand: Command, private var saveCommand: Command
+                     private var printOscarsCountCommand: Command,
+                     private var saveCommand: Command
 ) {
 
     private var commands = ArrayList<Command>()
@@ -36,10 +37,6 @@ class CommandManager(private var helpCommand: Command,
         commands.add(countGenreGreaterCommand)
         commands.add(printOscarsCountCommand)
         commands.add(saveCommand)
-    }
-
-    fun getCommands(): ArrayList<Command> {
-        return commands
     }
 
     fun help(str: String){
