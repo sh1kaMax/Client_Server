@@ -2,23 +2,23 @@ package utility
 
 import commands.Command
 
-class CommandManager(private var helpCommand: Command, exitCommand: Command, infoCommand: Command, addCommand: Command, showCommand: Command, updateCommand: Command, removeByIdCommand: Command, clearCommand: Command, removeGreaterCommand: Command, removeLowerCommand: Command, addIfMinCommand: Command, averageCommand: Command, countGenreGreaterCommand: Command, printOscarsCountCommand: Command, saveCommand: Command) {
+class CommandManager(private var helpCommand: Command,
+                     private var exitCommand: Command,
+                     private var infoCommand: Command,
+                     private var addCommand: Command,
+                     private var showCommand: Command,
+                     private var updateCommand: Command,
+                     private var removeByIdCommand: Command,
+                     private var clearCommand: Command,
+                     private var removeGreaterCommand: Command,
+                     private var removeLowerCommand: Command,
+                     private var addIfMinCommand: Command,
+                     private var averageCommand: Command,
+                     private var countGenreGreaterCommand: Command,
+                     private var printOscarsCountCommand: Command, private var saveCommand: Command
+) {
 
     private var commands = ArrayList<Command>()
-    private var exitCommand: Command = exitCommand
-    private var infoCommand: Command = infoCommand
-    private var addCommand: Command = addCommand
-    private var showCommand: Command = showCommand
-    private var updateCommand: Command = updateCommand
-    private var removeByIdCommand: Command = removeByIdCommand
-    private var clearCommand: Command = clearCommand
-    private var removeGreaterCommand: Command = removeGreaterCommand
-    private var removeLowerCommand: Command = removeLowerCommand
-    private var addIfMinCommand: Command = addIfMinCommand
-    private var averageCommand: Command = averageCommand
-    private var countGenreGreaterCommand: Command = countGenreGreaterCommand
-    private var printOscarsCountCommand: Command = printOscarsCountCommand
-    private var saveCommand: Command = saveCommand
 
     init {
         commands.add(helpCommand)
