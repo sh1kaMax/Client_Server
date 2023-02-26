@@ -2,10 +2,9 @@ package utility
 
 import commands.Command
 
-class CommandManager(helpCommand: Command, exitCommand: Command, infoCommand: Command, addCommand: Command, showCommand: Command, updateCommand: Command, removeByIdCommand: Command, clearCommand: Command, removeGreaterCommand: Command, removeLowerCommand: Command, addIfMinCommand: Command, averageCommand: Command, countGenreGreaterCommand: Command, printOscarsCountCommand: Command, saveCommand: Command) {
+class CommandManager(private var helpCommand: Command, exitCommand: Command, infoCommand: Command, addCommand: Command, showCommand: Command, updateCommand: Command, removeByIdCommand: Command, clearCommand: Command, removeGreaterCommand: Command, removeLowerCommand: Command, addIfMinCommand: Command, averageCommand: Command, countGenreGreaterCommand: Command, printOscarsCountCommand: Command, saveCommand: Command) {
 
     private var commands = ArrayList<Command>()
-    private var helpCommand: Command = helpCommand
     private var exitCommand: Command = exitCommand
     private var infoCommand: Command = infoCommand
     private var addCommand: Command = addCommand
