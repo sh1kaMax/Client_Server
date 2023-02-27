@@ -1,5 +1,6 @@
 package commands
 
+import asker
 import exceptions.EmptyCollectionException
 import utility.CollectionManager
 
@@ -14,7 +15,7 @@ class CountAvarageOfOscars(collectionManager: CollectionManager): AbsctractComma
         if (str.isEmpty()) {
             try {
                 if (collectionManager.getCollectionSize() == 0) throw EmptyCollectionException()
-                println("Используется команда " + getName())
+                if (!asker.getScriptMode()) println("Используется команда " + getName())
                 println("Среднее количество оскаров в кинотаетрах: " + collectionManager.getAverageOfOscars())
             }catch (e: EmptyCollectionException) {
                 println("error: Коллекция пустая!")

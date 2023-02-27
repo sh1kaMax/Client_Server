@@ -1,8 +1,8 @@
 package commands
 
-import collection.*
-import utility.CollectionManager
+import collection.Movie
 import utility.Asker
+import utility.CollectionManager
 import java.time.Instant
 import java.util.*
 
@@ -17,7 +17,7 @@ class Add(collectionManager: CollectionManager, asker: Asker): AbsctractCommand(
 
     override fun execute(str: String): Boolean {
         if (str.isEmpty()) {
-            println("Используется команда " + getName())
+            if (!asker.getScriptMode()) println("Используется команда " + getName())
             collectionManager.addObjectToCollection(Movie(
                 collectionManager.generateId(),
                 asker.askForMovieName(),

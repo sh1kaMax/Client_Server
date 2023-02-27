@@ -1,8 +1,8 @@
 package commands
 
+import asker
 import exceptions.EmptyCollectionException
 import utility.CollectionManager
-import java.lang.NumberFormatException
 
 class Clear(collectionManager: CollectionManager): AbsctractCommand("clear", "очистить коллекцию") {
     private var collectionManager: CollectionManager
@@ -15,7 +15,7 @@ class Clear(collectionManager: CollectionManager): AbsctractCommand("clear", "о
         if (str.isEmpty()) {
             try {
                 if (collectionManager.getCollectionSize() == 0) throw EmptyCollectionException()
-                println("Используется команда " + getName())
+                if (!asker.getScriptMode()) println("Используется команда " + getName())
                 collectionManager.clearCollection()
                 println("Коллекция очищена")
             } catch (e: EmptyCollectionException) {

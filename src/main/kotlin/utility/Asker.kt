@@ -12,6 +12,7 @@ class Asker(scan: Scanner) {
     private val maxY: Int = 257
     private val minOscarsCount: Long = 1
     private var scan: Scanner = scan
+    private var scriptMode = false
 
     companion object{
         private lateinit var movieName: String
@@ -40,14 +41,26 @@ class Asker(scan: Scanner) {
         this.scan = scan
     }
 
-    fun getScan(scan: Scanner): Scanner {
+    fun getScan(): Scanner {
         return scan
+    }
+
+    fun setScriptNotInProgress() {
+        this.scriptMode = false
+    }
+
+    fun setScriptInProgress() {
+        this.scriptMode = true
+    }
+
+    fun getScriptMode(): Boolean {
+        return scriptMode
     }
 
     fun askForMovieName(): String {
         while(true){
             try {
-                print("Введите название кинотеатра:\n>")
+                if (!scriptMode) print("Введите название кинотеатра:\n>")
                 movieName = scan.nextLine().trim()
                 if(movieName.equals("")) throw IsEmptyException()
                 if(movieName.contains(Regex("[^a-z^A-Z]"))) throw NotInTrueFormatException()
@@ -82,7 +95,7 @@ class Asker(scan: Scanner) {
     fun askForDirectorName(): String {
         while(true){
             try {
-                print("Введите имя директора:\n>")
+                if (!scriptMode) print("Введите имя директора:\n>")
                 personName = scan.nextLine().trim()
                 if (personName.equals("")) throw IsEmptyException()
                 if(personName.contains(Regex("[^a-z^A-Z]"))) throw NotInTrueFormatException()
@@ -99,7 +112,7 @@ class Asker(scan: Scanner) {
     fun askForX(): Float {
         while(true){
             try {
-                print("Введите координату x:\n>")
+                if (!scriptMode) print("Введите координату x:\n>")
                 strX = scan.nextLine().trim()
                 if (strX.equals("")) throw IsEmptyException()
                 x = strX.toFloat()
@@ -116,7 +129,7 @@ class Asker(scan: Scanner) {
     fun askForY(): Int {
         while(true){
             try {
-                print("Введите координату y:\n>")
+                if (!scriptMode) print("Введите координату y:\n>")
                 strY = scan.nextLine().trim()
                 if (strY.equals("")) throw IsEmptyException()
                 y = strY.toInt()
@@ -136,7 +149,7 @@ class Asker(scan: Scanner) {
     fun askForZ(): Float {
         while(true){
             try {
-                print("Введите координату z:\n>")
+                if (!scriptMode) print("Введите координату z:\n>")
                 strZ = scan.nextLine().trim()
                 if (strZ.equals("")) throw IsEmptyException()
                 z = strZ.toFloat()
@@ -166,7 +179,7 @@ class Asker(scan: Scanner) {
     fun askForOscarsCount(): Int {
         while (true) {
             try {
-                print("Введите сколько оскаров получил кинотеатр:\n>")
+                if (!scriptMode) print("Введите сколько оскаров получил кинотеатр:\n>")
                 oscarsStr = scan.nextLine().trim()
                 if (oscarsStr.equals("")) throw IsEmptyException()
                 oscars = oscarsStr.toInt()
@@ -186,8 +199,10 @@ class Asker(scan: Scanner) {
     fun askForGenre(): MovieGenre {
         while (true) {
             try {
-                println("Список жанров - " + MovieGenre.getEnums())
-                print("Введите жанр фильма:\n>")
+                if (!scriptMode) {
+                    println("Список жанров - " + MovieGenre.getEnums())
+                    print("Введите жанр фильма:\n>")
+                }
                 genreStr = scan.nextLine().trim()
                 if (genreStr.equals("")) throw IsEmptyException()
                 genre = MovieGenre.valueOf(genreStr.uppercase(Locale.getDefault()))
@@ -204,8 +219,10 @@ class Asker(scan: Scanner) {
     fun askForRating(): MpaaRating {
         while (true) {
             try {
-                println("Список рейтингов - " + MpaaRating.getEnums())
-                print("Введите рейтинг:\n>")
+                if (!scriptMode) {
+                    println("Список рейтингов - " + MpaaRating.getEnums())
+                    print("Введите рейтинг:\n>")
+                }
                 ratingStr = scan.nextLine().trim()
                 if (ratingStr.equals("")) throw IsEmptyException()
                 rating = MpaaRating.valueOf(ratingStr.uppercase(Locale.getDefault()))
@@ -222,8 +239,10 @@ class Asker(scan: Scanner) {
     fun askForEyeColor(): Color {
         while (true) {
             try {
-                println("Список цветов - " + Color.getEnums())
-                print("Введите цвет глаз директора:\n>")
+                if (!scriptMode) {
+                    println("Список цветов - " + Color.getEnums())
+                    print("Введите цвет глаз директора:\n>")
+                }
                 colorStr = scan.nextLine().trim()
                 if (colorStr.equals("")) throw IsEmptyException()
                 color = Color.valueOf(colorStr.uppercase(Locale.getDefault()))
@@ -245,7 +264,7 @@ class Asker(scan: Scanner) {
         color = askForEyeColor()
         while (true){
             try {
-                print("Введите день рождения директора через пробел(например 1 3 2004 - это первое марта 2004 годп)\n>")
+                if (!scriptMode) print("Введите день рождения директора через пробел(например 1 3 2004 - это первое марта 2004 годп)\n>")
                 dayOfBirthday = scan.next().trim().toInt()
                 monthOfBirthday = scan.next().trim().toInt()
                 yearOfBirthday = scan.next().trim().toInt()

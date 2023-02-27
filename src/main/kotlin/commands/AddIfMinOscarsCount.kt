@@ -18,7 +18,7 @@ class AddIfMinOscarsCount(collectionManager: CollectionManager, asker: Asker): A
     override fun execute(str: String): Boolean {
         if (str.isEmpty()) {
             if (collectionManager.getMinCountOfOscars() != 1) {
-                println("Используется команда " + getName())
+                if (!asker.getScriptMode()) println("Используется команда " + getName())
                 val oscars = asker.askForOscarsCount()
                 if (collectionManager.compareOscarsWithMin(oscars)) {
                     collectionManager.addObjectToCollection(

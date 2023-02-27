@@ -1,9 +1,9 @@
 package commands
 
+import asker
 import collection.MovieGenre
 import exceptions.EmptyCollectionException
 import utility.CollectionManager
-import java.lang.IllegalArgumentException
 import java.util.*
 
 class CountGenresGreater(collectionManager: CollectionManager): AbsctractCommand("count_greater_than_genre genre", "вывести количество элементов, значения поля genre которых больше заданного") {
@@ -18,7 +18,7 @@ class CountGenresGreater(collectionManager: CollectionManager): AbsctractCommand
             try {
                 if (collectionManager.getCollectionSize() == 0) throw EmptyCollectionException()
                 val genre = MovieGenre.valueOf(str.uppercase(Locale.getDefault()))
-                println("Используется команда " + getName())
+                if (!asker.getScriptMode()) println("Используется команда " + getName())
                 println("Количество жанров больше заданного: " + collectionManager.getCountOfGenreGreater(genre))
             }catch (e: EmptyCollectionException){
                 println("error: Коллекция пустая!")

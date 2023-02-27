@@ -1,5 +1,6 @@
 package commands
 
+import asker
 import utility.CollectionManager
 
 class Info(collectionManager: CollectionManager): AbsctractCommand("info", "вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.") {
@@ -10,7 +11,7 @@ class Info(collectionManager: CollectionManager): AbsctractCommand("info", "вы
 
     override fun execute(str: String): Boolean {
         if (str.isEmpty()) {
-            println("Используется команда " + getName())
+            if (!asker.getScriptMode()) println("Используется команда " + getName())
             var lastInitTime: String = collectionManager.getLastInitTime().toString()
             if (lastInitTime == "null") lastInitTime = "иницилизация еще не произовидилась"
             var lastSaveTime: String = collectionManager.getLastSaveTime().toString()

@@ -17,7 +17,7 @@ class RemoveLowerCountOfOscars(collectionManager: CollectionManager, asker: Aske
         if (str.isEmpty()) {
             try {
                 if (collectionManager.getCollectionSize() == 0) throw EmptyCollectionException()
-                println("Используется команда " + getName())
+                if (!asker.getScriptMode()) println("Используется команда " + getName())
                 var oscars = asker.askForOscarsToRemoveLower()
                 oscars = collectionManager.removeLowerByOscars(oscars)
                 if (oscars == 0) {

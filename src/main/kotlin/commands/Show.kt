@@ -1,5 +1,6 @@
 package commands
 
+import asker
 import utility.CollectionManager
 
 class Show(collectionManager: CollectionManager): AbsctractCommand("show", "вывести в стандартный поток вывода все элементы коллекции в строковом представлении"){
@@ -11,7 +12,7 @@ class Show(collectionManager: CollectionManager): AbsctractCommand("show", "вы
 
     override fun execute(str: String): Boolean {
         if(str.isEmpty()) {
-            println("Используется команда " + getName())
+            if (!asker.getScriptMode()) println("Используется команда " + getName())
             println(collectionManager)
             return true
         }else {

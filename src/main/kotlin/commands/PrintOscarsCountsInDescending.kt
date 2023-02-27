@@ -1,5 +1,6 @@
 package commands
 
+import asker
 import exceptions.EmptyCollectionException
 import utility.CollectionManager
 
@@ -14,7 +15,7 @@ class PrintOscarsCountsInDescending(collectionManager: CollectionManager): Absct
         if (str.isEmpty()) {
             try {
                 if (collectionManager.getCollectionSize() == 0) throw EmptyCollectionException()
-                println("Используется команда " + getName())
+                if (!asker.getScriptMode()) println("Используется команда " + getName())
                 println("Количество оскаров кинотеатров в порядке убывания: " + collectionManager.getOscarsCountsInDescending())
             }catch (e: EmptyCollectionException) {
                 println("error: Коллекция пустая!")

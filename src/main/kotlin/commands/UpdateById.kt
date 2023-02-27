@@ -5,7 +5,6 @@ import exceptions.EmptyCollectionException
 import exceptions.NoMovieByIdException
 import utility.Asker
 import utility.CollectionManager
-import java.lang.NumberFormatException
 
 class UpdateById(collectionManager: CollectionManager, asker: Asker): AbsctractCommand("update id {element}", "обновить значение элемента коллекции, id которого равен заданному"){
     private var collectionManager: CollectionManager
@@ -22,7 +21,7 @@ class UpdateById(collectionManager: CollectionManager, asker: Asker): AbsctractC
                 if (collectionManager.getCollectionSize() == 0) throw EmptyCollectionException()
                 val id: Int = str.toInt()
                 val movie = collectionManager.getById(id) ?: throw NoMovieByIdException()
-                println("Используется команда " + getName())
+                if (!asker.getScriptMode()) println("Используется команда " + getName())
 
                 var movieName = movie.getName()
                 var coordinates = movie.getCoordinates()

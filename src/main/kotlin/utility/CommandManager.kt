@@ -1,6 +1,7 @@
 package utility
 
 import commands.Command
+import commands.ExecuteScript
 
 class CommandManager(private var helpCommand: Command,
                      private var exitCommand: Command,
@@ -16,7 +17,8 @@ class CommandManager(private var helpCommand: Command,
                      private var averageCommand: Command,
                      private var countGenreGreaterCommand: Command,
                      private var printOscarsCountCommand: Command,
-                     private var saveCommand: Command
+                     private var saveCommand: Command,
+                     private var executeScriptCommand: ExecuteScript
 ) {
 
     private var commands = ArrayList<Command>()
@@ -37,6 +39,7 @@ class CommandManager(private var helpCommand: Command,
         commands.add(countGenreGreaterCommand)
         commands.add(printOscarsCountCommand)
         commands.add(saveCommand)
+        commands.add(executeScriptCommand)
     }
 
     fun help(str: String){
@@ -102,4 +105,12 @@ class CommandManager(private var helpCommand: Command,
     fun save(str: String) {
         saveCommand.execute(str)
     }
-}
+
+    fun executeScript(str: String): Boolean {
+        return executeScriptCommand.execute(str)
+    }
+
+    fun executeScriptOptional(str1: String, str2: String): Boolean {
+        return executeScriptCommand.executeOptional(str1, str2)
+    }
+ }

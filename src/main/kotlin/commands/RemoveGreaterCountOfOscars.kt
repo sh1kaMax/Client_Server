@@ -17,7 +17,7 @@ class RemoveGreaterCountOfOscars(collectionManager: CollectionManager, asker: As
         if (str.isEmpty()) {
             try {
                 if (collectionManager.getCollectionSize() == 0) throw EmptyCollectionException()
-                println("Используется команда " + getName())
+                if (!asker.getScriptMode()) println("Используется команда " + getName())
                 var oscars = asker.askForOscarsToRemoveGreater()
                 oscars = collectionManager.removeGreaterByOscars(oscars)
                 if (oscars == 0) {
