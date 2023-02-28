@@ -35,7 +35,7 @@ class UpdateById(collectionManager: CollectionManager, asker: Asker): AbsctractC
                 if(asker.askQuestion("Хотите изменить название кинотеатра?")) movieName = asker.askForMovieName()
                 if(asker.askQuestion("Хотите изменить координаты кинотеатра?")) coordinates = asker.askForCoordinates()
                 if(asker.askQuestion("Хотите изменить количество оскаров?")) oscars = asker.askForOscarsCount()
-                if(asker.askQuestion("Хотите изменить женр?")) genre = asker.askForGenre()
+                if(asker.askQuestion("Хотите изменить жанр?")) genre = asker.askForGenre()
                 if(asker.askQuestion("Хотите изменить рейтинг?")) rating = asker.askForRating()
                 if(asker.askQuestion("Хотите изменить директора?")) director = asker.askForPerson()
 

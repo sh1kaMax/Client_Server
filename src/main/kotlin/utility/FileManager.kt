@@ -1,8 +1,10 @@
 package utility
+import asker
 import collection.Movie
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import java.io.FileNotFoundException
 import java.io.FileReader
 import java.io.FileWriter
 import java.io.IOException
@@ -22,7 +24,16 @@ class FileManager(private var name: String) {
     }
 
     fun readCollection(): TreeSet<Movie> {
-        val fileReader = FileReader(name)
+        var fileReader: FileReader
+        while (true) {
+            try {
+                fileReader = FileReader(name)
+                break
+            } catch (e: FileNotFoundException) {
+                println("error: Файла с таким названием нету!")
+                setName(asker.askForFileName())
+            }
+        }
         var char: Int
         var input = ""
         do {
@@ -33,5 +44,9 @@ class FileManager(private var name: String) {
             input += char.toChar()
         } while (true)
         return TreeSet(json.decodeFromString<List<Movie>>(input))
+    }
+
+    fun setName(name: String) {
+        this.name = name
     }
 }

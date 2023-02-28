@@ -4,6 +4,7 @@ import collection.*
 import exceptions.IsEmptyException
 import exceptions.NotInLimitException
 import exceptions.NotInTrueFormatException
+import java.io.FileNotFoundException
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.util.*
@@ -87,6 +88,8 @@ class Asker(scan: Scanner) {
                 println("error: Название не может быть пустым!")
             } catch (e: NotInTrueFormatException){
                 println("error: Название должно содержать только буквы!")
+            } catch (e: FileNotFoundException) {
+                println("error: Файла с таким названием нету!")
             }
         }
         return movieName
