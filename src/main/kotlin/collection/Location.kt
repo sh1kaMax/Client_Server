@@ -8,18 +8,6 @@ data class Location(private var x: Float,
                     private var z: Float
                     ) {
 
-    fun getX(): Float{
-        return x
-    }
-
-    fun getY(): Float {
-        return y
-    }
-
-    fun getZ(): Float {
-        return z
-    }
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

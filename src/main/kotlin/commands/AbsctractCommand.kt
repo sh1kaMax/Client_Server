@@ -1,13 +1,10 @@
 package commands
 
-abstract class AbsctractCommand(name: String, explanationOfCommand: String): Command {
-    private var name: String
-    private var explanationOfCommand: String
+abstract class AbsctractCommand(
+    private val name: String,
+    private val explanationOfCommand: String,
+) : Command {
 
-    init {
-        this.name = name
-        this.explanationOfCommand = explanationOfCommand
-    }
 
     override fun getName(): String {
         return name

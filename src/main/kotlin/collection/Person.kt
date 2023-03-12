@@ -29,22 +29,6 @@ data class Person(private var name: String,
                   private var location: Location
                   ) {
 
-    fun getName(): String {
-        return name
-    }
-
-    fun getBirthday(): ZonedDateTime {
-        return birthday
-    }
-
-    fun getEyeColor(): Color {
-        return eyeColor
-    }
-
-    fun getLocation(): Location {
-        return location
-    }
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

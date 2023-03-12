@@ -1,23 +1,12 @@
 package commands
 
-import asker
-import utility.CollectionManager
+import requestManager
+import utility.CommandResult
 
-class Save(collectionManager: CollectionManager): AbsctractCommand("save", "сохранить коллекцию в файл") {
-    private var collectionManager: CollectionManager
+class Save: AbsctractCommand("save", "сохранить коллекцию в файл") {
 
-    init {
-        this.collectionManager = collectionManager
-    }
-
-    override fun execute(str: String): Boolean {
-        if (str.isEmpty()){
-            if (!asker.getScriptMode()) println("Используется команда " + getName())
-            collectionManager.saveCollection()
-            return true
-        }else {
-            println("error: Неправильно введена команда!")
-            return false
-        }
+    override fun execute(str: String): CommandResult{
+        requestManager.saveRequest()
+        return CommandResult(true)
     }
 }

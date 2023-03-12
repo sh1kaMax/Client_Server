@@ -50,10 +50,6 @@ data class Movie(private var id: Int,
         return creationDate
     }
 
-    fun convertCreationDateToString(creationDate: Date): String {
-        return creationDate.toString()
-    }
-
     fun getOscarsCount(): Int {
         return oscarsCount
     }

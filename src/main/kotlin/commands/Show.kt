@@ -1,23 +1,12 @@
 package commands
 
-import asker
-import utility.CollectionManager
+import requestManager
+import utility.CommandResult
 
-class Show(collectionManager: CollectionManager): AbsctractCommand("show", "вывести в стандартный поток вывода все элементы коллекции в строковом представлении"){
-    private var collectionManager: CollectionManager
+class Show: AbsctractCommand("show", "вывести в стандартный поток вывода все элементы коллекции в строковом представлении"){
 
-    init {
-        this.collectionManager = collectionManager
-    }
-
-    override fun execute(str: String): Boolean {
-        if(str.isEmpty()) {
-            if (!asker.getScriptMode()) println("Используется команда " + getName())
-            println(collectionManager)
-            return true
-        }else {
-            println("error: Неправильно введена команда!")
-            return false
-        }
+    override fun execute(str: String): CommandResult {
+        requestManager.showRequest()
+        return CommandResult(true)
     }
 }

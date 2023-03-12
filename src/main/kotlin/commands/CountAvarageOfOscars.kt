@@ -1,29 +1,11 @@
 package commands
 
-import asker
-import exceptions.EmptyCollectionException
-import utility.CollectionManager
+import requestManager
+import utility.CommandResult
 
-class CountAvarageOfOscars(collectionManager: CollectionManager): AbsctractCommand("average_of_oscars_count", "вывести среднее значение поля OscarsCount для всех элементов коллекции") {
-    private var collectionManager: CollectionManager
+class CountAvarageOfOscars: AbsctractCommand("average_of_oscars_count", "вывести среднее значение поля OscarsCount для всех элементов коллекции") {
 
-    init {
-        this.collectionManager = collectionManager
-    }
-
-    override fun execute(str: String): Boolean {
-        if (str.isEmpty()) {
-            try {
-                if (collectionManager.getCollectionSize() == 0) throw EmptyCollectionException()
-                if (!asker.getScriptMode()) println("Используется команда " + getName())
-                println("Среднее количество оскаров в кинотаетрах: " + collectionManager.getAverageOfOscars())
-            }catch (e: EmptyCollectionException) {
-                println("error: Коллекция пустая!")
-            }
-            return true
-        }else {
-            println("error: Неправильно введена команда!")
-            return false
-        }
+    override fun execute(str: String): CommandResult {
+        return CommandResult(true, requestManager.getAverageOscarsRequest())
     }
 }

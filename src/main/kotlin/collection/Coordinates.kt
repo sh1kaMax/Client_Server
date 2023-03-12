@@ -7,13 +7,6 @@ data class Coordinates(private var x: Float,
                        private var y: Int
                        ) {
 
-    fun getX(): Float{
-        return x
-    }
-
-    fun getY(): Int{
-        return y
-    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

@@ -46,7 +46,7 @@ class FileManager(private var name: String) {
         return TreeSet(json.decodeFromString<List<Movie>>(input))
     }
 
-    fun setName(name: String) {
+    private fun setName(name: String) {
         this.name = name
     }
 }
