@@ -21,6 +21,19 @@ object DateSerializer : KSerializer<Date> {
     }
 }
 
+/**
+ * Movie
+ *
+ * @property id
+ * @property name
+ * @property coordinates
+ * @property creationDate
+ * @property oscarsCount
+ * @property genre
+ * @property mpaaRating
+ * @property director
+ * @constructor Create Movie
+ */
 @Serializable
 data class Movie(private var id: Int,
                  private var name: String,
@@ -34,34 +47,74 @@ data class Movie(private var id: Int,
                  ): Comparable<Movie> {
 
 
+    /**
+     * Get id
+     *
+     * @return id of the movie
+     */
     fun getId(): Int{
         return id
     }
 
+    /**
+     * Get name
+     *
+     * @return name of the movie
+     */
     fun getName(): String{
         return name
     }
 
+    /**
+     * Get coordinates
+     *
+     * @return Coordinates of the movie
+     */
     fun getCoordinates(): Coordinates{
         return coordinates
     }
 
+    /**
+     * Get creation date
+     *
+     * @return creation date of the movie
+     */
     fun getCreationDate(): Date{
         return creationDate
     }
 
+    /**
+     * Get oscars count
+     *
+     * @return oscars count of the movie
+     */
     fun getOscarsCount(): Int {
         return oscarsCount
     }
 
+    /**
+     * Get genre
+     *
+     * @return genre of the movie
+     */
     fun getGenre(): MovieGenre{
         return genre
     }
 
+    /**
+     * Get mpaa rating
+     *
+     * @return mpaa rating of the movie
+     */
     fun getMpaaRating(): MpaaRating{
         return mpaaRating
     }
 
+    /**
+     * Get director
+     *
+     * @return director of the movie
+     */
     fun getDirector(): Person{
         return director
     }

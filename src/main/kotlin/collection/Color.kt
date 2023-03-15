@@ -1,5 +1,8 @@
 package collection
 
+/**
+ * Enum with colors of eyes
+ */
 enum class Color {
     GREEN,
     YELLOW,
@@ -8,6 +11,9 @@ enum class Color {
     BROWN;
 
     companion object {
+        /**
+         * @return String with enums of this class
+         */
         fun getEnums(): String {
             var strEnums = ""
             for (genre in values()) {

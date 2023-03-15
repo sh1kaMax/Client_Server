@@ -2,6 +2,14 @@ package collection
 
 import kotlinx.serialization.Serializable
 
+/**
+ * Location of the person
+ *
+ * @property x
+ * @property y
+ * @property z
+ * @constructor Create Location
+ */
 @Serializable
 data class Location(private var x: Float,
                     private var y: Float,

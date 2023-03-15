@@ -1,35 +1,65 @@
 package utility
 
-import collection.*
+import collection.Color
+import collection.Coordinates
+import collection.MovieGenre
+import collection.MpaaRating
 import exceptions.IsEmptyException
 import exceptions.NotInLimitException
 import exceptions.NotInTrueFormatException
 import java.io.FileNotFoundException
-import java.time.ZoneId
-import java.time.ZonedDateTime
 import java.util.*
 
-class Asker(private var scan: Scanner) {
+/**
+ * Fabrique
+ *
+ * @property scan
+ * @constructor Create Fabrique
+ */
+class Fabrique(private var scan: Scanner) {
     private val maxY: Int = 257
     private val minOscarsCount: Long = 1
     private var scriptMode = false
 
+    /**
+     * Set scanner
+     *
+     * @param scan
+     */
     fun setScan(scan: Scanner) {
         this.scan = scan
     }
 
+    /**
+     * Get scanner
+     *
+     * @return scanner of the fabrique
+     */
     fun getScan(): Scanner {
         return scan
     }
 
+    /**
+     * Set script not in progress
+     *
+     */
     fun setScriptNotInProgress() {
         this.scriptMode = false
     }
 
+    /**
+     * Set script in progress
+     *
+     */
     fun setScriptInProgress() {
         this.scriptMode = true
     }
 
+    /**
+     * Ask for movie name
+     *
+     * @return name of the movie
+     */
     fun askForMovieName(): String {
         var movieName: String
         while(true){
@@ -48,6 +78,11 @@ class Asker(private var scan: Scanner) {
         return movieName
     }
 
+    /**
+     * Ask for file name
+     *
+     * @return name of the file
+     */
     fun askForFileName(): String{
         var fileName: String
         while(true){
@@ -69,6 +104,11 @@ class Asker(private var scan: Scanner) {
         return fileName
     }
 
+    /**
+     * Ask for director name
+     *
+     * @return name of the director
+     */
     private fun askForDirectorName(): String {
         var personName: String
         while(true){
@@ -87,6 +127,11 @@ class Asker(private var scan: Scanner) {
         return personName
     }
 
+    /**
+     * Ask for x
+     *
+     * @return x of the coordinates
+     */
     private fun askForX(): Float {
         var strX: String
         var x: Float
@@ -106,6 +151,11 @@ class Asker(private var scan: Scanner) {
         return x
     }
 
+    /**
+     * Ask for y
+     *
+     * @return y of the coordinates
+     */
     private fun askForY(): Int {
         var strY: String
         var y: Int
@@ -128,6 +178,11 @@ class Asker(private var scan: Scanner) {
         return y
     }
 
+    /**
+     * Ask for z
+     *
+     * @return z of the coordinates
+     */
     private fun askForZ(): Float {
         var strZ: String
         var z: Float
@@ -147,12 +202,22 @@ class Asker(private var scan: Scanner) {
         return z
     }
 
+    /**
+     * Ask for coordinates
+     *
+     * @return coordinates of the movie
+     */
     fun askForCoordinates(): Coordinates {
         val x = askForX()
         val y = askForY()
         return Coordinates(x, y)
     }
 
+    /**
+     * Ask for oscars count
+     *
+     * @return oscars count of the movie
+     */
     fun askForOscarsCount(): Int {
         var oscarsStr: String
         var oscars: Int
@@ -175,6 +240,11 @@ class Asker(private var scan: Scanner) {
         return oscars
     }
 
+    /**
+     * Ask for genre
+     *
+     * @return genre of the movie
+     */
     fun askForGenre(): MovieGenre {
         var genreStr: String
         var genre: MovieGenre
@@ -197,6 +267,11 @@ class Asker(private var scan: Scanner) {
         return genre
     }
 
+    /**
+     * Ask for rating
+     *
+     * @return rating of the movie
+     */
     fun askForRating(): MpaaRating {
         var ratingStr: String
         var rating: MpaaRating
@@ -219,6 +294,11 @@ class Asker(private var scan: Scanner) {
         return rating
     }
 
+    /**
+     * Ask for eye color
+     *
+     * @return eye color of the movie's director
+     */
     private fun askForEyeColor(): Color {
         var colorStr: String
         var color: Color
@@ -241,13 +321,13 @@ class Asker(private var scan: Scanner) {
         return color
     }
 
-    fun askForPerson(): Person {
+    /**
+     * Ask for person
+     *
+     * @return director of the movie
+     */
+    fun askForPerson(): String {
         var birthday: Array<String>
-        val personName = askForDirectorName()
-        val x = askForX()
-        val y2 = askForY().toFloat()
-        val z = askForZ()
-        val color = askForEyeColor()
         while (true){
             try {
                 if (!scriptMode) print("Введите день рождения директора через пробел(например 1 3 2004 - это первое марта 2004 годп)\n>")
@@ -263,9 +343,16 @@ class Asker(private var scan: Scanner) {
                 println("error: Неправильные значения!")
             }
         }
-        return Person(personName, ZonedDateTime.of(birthday[2].toInt(), birthday[1].toInt(), birthday[0].toInt(), 0, 0, 0, 0, ZoneId.systemDefault()), color, Location(x, y2, z))
+        return birthday[2] + " " + birthday[1] + " " + birthday[0]
+//        return Person(personName, ZonedDateTime.of(birthday[2].toInt(), birthday[1].toInt(), birthday[0].toInt(), 0, 0, 0, 0, ZoneId.systemDefault()), color, Location(x, y2, z))
     }
 
+    /**
+     * Ask question
+     *
+     * @param argument
+     * @return True if answer is yes. False if answer is no
+     */
     fun askQuestion(argument: String): Boolean {
         val question = "$argument (yes/no):\n>"
         var answer: String
@@ -282,6 +369,11 @@ class Asker(private var scan: Scanner) {
         return answer == "yes"
     }
 
+    /**
+     * Ask for oscars to remove greater
+     *
+     * @return oscars
+     */
     fun askForOscarsToRemoveGreater(): Int {
         var oscarsStr: String
         var oscars: Int
@@ -302,6 +394,11 @@ class Asker(private var scan: Scanner) {
         return oscars
     }
 
+    /**
+     * Ask for oscars to remove lower
+     *
+     * @return oscars
+     */
     fun askForOscarsToRemoveLower(): Int {
         var oscarsStr: String
         var oscars: Int
@@ -320,5 +417,15 @@ class Asker(private var scan: Scanner) {
             }
         }
         return oscars
+    }
+
+    fun askForCommandArguments(str1: String): String {
+        if (str1 in listOf("add", "add_if_min", "update")) {
+            return askForMovieName()+ " " + askForX() + " " + askForY() + " " + askForOscarsCount() + " " + askForGenre() + " " + askForRating() + " " + askForDirectorName() + " " + askForPerson() + " " + askForEyeColor() + " " + askForX() + " " + askForY() + " " + askForZ()
+        }
+        if (str1 in listOf("remove_greater", "remove_lower")) {
+            return askForOscarsCount().toString()
+        }
+        return ""
     }
 }

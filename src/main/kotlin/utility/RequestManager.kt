@@ -3,94 +3,186 @@ package utility
 import collection.*
 import commandExecuter
 import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
 import java.util.*
 import kotlin.system.exitProcess
 
+/**
+ * Request manager
+ *
+ * @property collectionManager
+ * @property fabrique
+ * @constructor Create Request manager
+ */
 class RequestManager(private var collectionManager: CollectionManager,
-                     private var asker: Asker,
+                     private var fabrique: Fabrique,
+                     private var fileManager: FileManager
                      ) {
 
-    fun helpRequest() {
-        commandExecuter.help()
+    /**
+     * make a request on executing help
+     *
+     */
+    fun helpRequest(str: String): String {
+        return if (str.isEmpty()) {
+            commandExecuter.help()
+        }else "error: После команды help не должно быть аргументов"
     }
 
-    fun exitRequest() {
-        exitProcess(0)
+    /**
+     * make a request on executing exit
+     *
+     */
+    fun exitRequest(str: String): String {
+        if (str.isEmpty()) {
+            exitProcess(0)
+        } else return "error: После команды exit не должно быть аргументов"
     }
 
-    fun infoRequest() {
-        var lastInitTime = collectionManager.getLastInitTime().toString()
-        if (lastInitTime == "null") lastInitTime = "иницилизация еще не произовидилась"
-        var lastSaveTime = collectionManager.getLastSaveTime().toString()
-        if (lastSaveTime == "null") lastSaveTime = "сохранение еще не производилось"
-        println(
+
+    /**
+     * make a request on executing info
+     *
+     * @return information about collection
+     */
+    fun infoRequest(str: String): String {
+        return if (str.isEmpty()) {
             "Информация о коллекции:\n" +
                     " Тип коллекции: " + collectionManager.getCollectionType() + "\n" +
                     " Размер коллекции: " + collectionManager.getCollectionSize() + "\n" +
-                    " Дата и время последнего сохранения: " + lastSaveTime + "\n" +
-                    " Дата и время последней иницилизации: " + lastInitTime)
+                    " Дата и время последнего сохранения: " + collectionManager.getLastSaveTime() + "\n" +
+                    " Дата и время последней иницилизации: " + collectionManager.getLastInitTime()
+        } else "error: После команды exit не должно быть аргументов"
     }
 
-    fun showRequest() {
-        println(collectionManager)
+    /**
+     * make a request on executing show
+     *
+     */
+    fun showRequest(str: String): String {
+        return if (str.isEmpty()) {
+            collectionManager.toString()
+        } else "error: После команды show не должно быть аргументов"
     }
 
-    fun addRequest(id: Int?, movieName: String?, coordinates: Coordinates?,creationDate: Date?, oscars: Int?, genre: MovieGenre?, rating: MpaaRating?, person: Person?): String {
+    /**
+     * make a request on executing add
+     *
+     * @param id
+     * @param str
+     * @return confirmation of the executing the command
+     */
+    fun addRequest(id: Int?, str: String): String {
+        val listOfArguments = str.split(Regex(" ")).toTypedArray()
         collectionManager.addObjectToCollection(
             Movie(
             id ?: collectionManager.generateId(),
-            movieName ?: asker.askForMovieName(),
-            coordinates ?: asker.askForCoordinates(),
-            creationDate ?: Date.from(Instant.now()),
-            oscars ?: asker.askForOscarsCount(),
-            genre ?: asker.askForGenre(),
-            rating ?: asker.askForRating(),
-            person ?: asker.askForPerson()
+            listOfArguments[0],
+            Coordinates(listOfArguments[1].toFloat(), listOfArguments[2].toInt()),
+            Date.from(Instant.now()),
+            listOfArguments[3].toInt(),
+            MovieGenre.valueOf(listOfArguments[4].uppercase(Locale.getDefault())),
+            MpaaRating.valueOf(listOfArguments[5].uppercase(Locale.getDefault())),
+            Person(listOfArguments[6], ZonedDateTime.of(listOfArguments[7].toInt(), listOfArguments[8].toInt(), listOfArguments[9].toInt(), 0, 0, 0, 0, ZoneId.systemDefault()), Color.valueOf(listOfArguments[10].uppercase(Locale.getDefault())), Location(listOfArguments[11].toFloat(), listOfArguments[12].toFloat(), listOfArguments[13].toFloat()))
         ))
         return "Кинотеатр создан и добавлен в коллекцию"
     }
 
-    fun clearRequest(): String {
-        return if (collectionManager.getCollectionSize() == 0) {
-            "Коллекция пустая"
-        } else {
-            collectionManager.clearCollection()
-            "Коллекция очищена"
-        }
+    /**
+     * make a request on executing clear
+     *
+     * @return confirmation of the executing the command
+     */
+    fun clearRequest(str: String): String {
+        return if (str.isEmpty()) {
+            if (collectionManager.getCollectionSize() == 0) {
+                "Коллекция пустая"
+            } else {
+                collectionManager.clearCollection()
+                "Коллекция очищена"
+            }
+        } else "error: После команды clear не должно быть аргументов"
     }
 
-    fun checkIfMinOscarsCountRequest(): String {
-        val oscars = asker.askForOscarsCount()
-        return if (collectionManager.compareOscarsWithMin(oscars)) {
-            addRequest(null, null, null, null, oscars, null, null, null)
+    /**
+     * make a request on executing addIfMinOscarsCount
+     *
+     * @return confirmation of the executing the command
+     */
+    fun checkIfMinOscarsCountRequest(str: String): String {
+        val listOfArguments = str.split(Regex(" ")).toTypedArray()
+        return if (collectionManager.compareOscarsWithMin(listOfArguments[3].toInt())) {
+            addRequest(null, str)
         } else "Есть элемент с меньшим количеством оскаров"
     }
 
-    fun saveRequest() {
-        collectionManager.saveCollection()
+    /**
+     * make a request on executing save
+     *
+     */
+    fun saveRequest(str: String): String {
+        return if (str.isEmpty()) {
+            fileManager.writeCollection(collectionManager.getMoviesCollection())
+            collectionManager.setLastSaveTime(LocalDateTime.now())
+            "Коллекция сохранена на файл"
+        } else "После команды save не должно быть аргументов"
     }
 
-    fun getAverageOscarsRequest(): String {
-        return if (collectionManager.getCollectionSize() == 0) {
-            "Коллекция пустая"
-        } else "Среднее количество оскаров в кинотаетрах: " + collectionManager.getAverageOfOscars()
+    /**
+     * make a request on executing countAverageIfOscars
+     *
+     * @return confirmation of the executing the command
+     */
+    fun getAverageOscarsRequest(str: String): String {
+        return if (str.isEmpty()) {
+            if (collectionManager.getCollectionSize() == 0) {
+                "Коллекция пустая"
+            } else "Среднее количество оскаров в кинотаетрах: " + collectionManager.getAverageOfOscars()
+        } else "error: После команды average_of_oscars_count не должно быть аргументов"
     }
 
+    /**
+     * make a request on executing CountGenreGreater
+     *
+     * @param str
+     * @return confirmation of the executing the command
+     */
     fun countGreaterGenreRequest(str: String): String {
-        return if (collectionManager.getCollectionSize() == 0) {
-            "Коллекция пустая"
-        } else {
-            val genre = MovieGenre.valueOf(str.uppercase(Locale.getDefault()))
-            "Количество жанров больше заданного: " + collectionManager.getCountOfGenreGreater(genre)
-        }
+        return if (str.split(Regex(" ")).toList().size == 1) {
+            if (collectionManager.getCollectionSize() == 0) {
+                "Коллекция пустая"
+            } else {
+                try {
+                    val genre = MovieGenre.valueOf(str.uppercase(Locale.getDefault()))
+                    "Количество жанров больше заданного: " + collectionManager.getCountOfGenreGreater(genre)
+                } catch (e: IllegalArgumentException) {
+                    return "error: Такого жанра нету"
+                }
+            }
+        } else "error: Неправильный ввод данных"
     }
 
-    fun printOscarsCountRequest(): String {
-        return if (collectionManager.getCollectionSize() == 0) {
-            "Коллекция пустая"
-        } else "Количество оскаров кинотеатров в порядке убывания: " + collectionManager.getOscarsCountsInDescending()
+    /**
+     * make a request on executing PrintOscarsCountInDescending
+     *
+     * @return confirmation of the executing the command
+     */
+    fun printOscarsCountRequest(str: String): String {
+        return if (str.isEmpty()) {
+            if (collectionManager.getCollectionSize() == 0) {
+                "Коллекция пустая"
+            } else "Количество оскаров кинотеатров в порядке убывания: " + collectionManager.getOscarsCountsInDescending()
+        } else "error: После команды print_field_descending_oscars_count не должно быть аргументов"
     }
 
+    /**
+     * make a request on executing RemoveById
+     *
+     * @param str
+     * @return confirmation of the executing the command
+     */
     fun removeByIdRequest(str: String): String {
         if (collectionManager.getCollectionSize() == 0) {
             return "Коллекция пустая"
@@ -101,45 +193,52 @@ class RequestManager(private var collectionManager: CollectionManager,
         }
     }
 
-    fun removeGreaterOscarsRequest(): String {
+    /**
+     * make a request on executing RemoveGreaterCountOfOscars
+     *
+     * @return confirmation of the executing the command
+     */
+    fun removeGreaterOscarsRequest(str: String): String {
         return if (collectionManager.getCollectionSize() == 0) {
             "Коллекция пустая"
         } else {
-            "Было удалено " + collectionManager.removeGreaterByOscars(asker.askForOscarsToRemoveGreater()) + " кинотеатров, у которых больше оскаров"
+            "Было удалено " + collectionManager.removeGreaterByOscars(str.toInt()) + " кинотеатров, у которых больше оскаров"
         }
     }
 
-    fun removeLowerOscarsRequest(): String {
+    /**
+     * make a request on executing RemoveLowerCountOfOscars
+     *
+     * @return confirmation of the executing the command
+     */
+    fun removeLowerOscarsRequest(str: String): String {
         return if (collectionManager.getCollectionSize() == 0) {
             "Коллекция пустая"
         } else {
-            "Было удалено " + collectionManager.removeLowerByOscars(asker.askForOscarsToRemoveLower()) + " кинотеатров, у которых меньше оскаров"
+            "Было удалено " + collectionManager.removeLowerByOscars(str.toInt()) + " кинотеатров, у которых меньше оскаров"
         }
     }
 
+    /**
+     * make a request on executing UpdateById
+     *
+     * @param str
+     * @return confirmation of the executing the command
+     */
     fun updateByIdRequest(str: String): String {
         if (collectionManager.getCollectionSize() == 0) {
             return "Коллекция пустая"
         } else {
-            val movie = collectionManager.getById(str.toInt()) ?: return "Нету кинотеатра с таким id"
-
-            var movieName = movie.getName()
-            var coordinates = movie.getCoordinates()
-            val creationDate = movie.getCreationDate()
-            var oscars = movie.getOscarsCount()
-            var genre = movie.getGenre()
-            var rating = movie.getMpaaRating()
-            var director = movie.getDirector()
+            var listOfArguments = str.split(Regex(" ")).toTypedArray()
+            val movie = collectionManager.getById(listOfArguments[0].toInt()) ?: return "Нету кинотеатра с таким id"
+            val id = listOfArguments[0].toInt()
             collectionManager.removeFromCollection(movie)
 
-            if(asker.askQuestion("Хотите изменить название кинотеатра?")) movieName = asker.askForMovieName()
-            if(asker.askQuestion("Хотите изменить координаты кинотеатра?")) coordinates = asker.askForCoordinates()
-            if(asker.askQuestion("Хотите изменить количество оскаров?")) oscars = asker.askForOscarsCount()
-            if(asker.askQuestion("Хотите изменить жанр?")) genre = asker.askForGenre()
-            if(asker.askQuestion("Хотите изменить рейтинг?")) rating = asker.askForRating()
-            if(asker.askQuestion("Хотите изменить директора?")) director = asker.askForPerson()
+            val list = listOfArguments.toMutableList()
+            list.removeAt(0)
+            listOfArguments = list.toTypedArray()
 
-            return addRequest(str.toInt(), movieName, coordinates, creationDate, oscars, genre, rating, director)
+            return addRequest(id, listOfArguments.joinToString(separator = " "))
         }
     }
 }

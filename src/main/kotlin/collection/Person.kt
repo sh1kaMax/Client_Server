@@ -21,6 +21,15 @@ object ZonedDateSerializer : KSerializer<ZonedDateTime> {
     }
 }
 
+/**
+ * Director of the movie
+ *
+ * @property name
+ * @property birthday
+ * @property eyeColor
+ * @property location
+ * @constructor Create Person
+ */
 @Serializable
 data class Person(private var name: String,
                   @Serializable(ZonedDateSerializer::class)

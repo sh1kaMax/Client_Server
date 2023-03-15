@@ -5,15 +5,25 @@ import commands.*
 import java.io.File
 import java.util.*
 
-class CommandExecuter{
+/**
+ * Command executer
+ *
+ * @constructor Create Command executer
+ */
+class CommandExecuter(private var fabrique: Fabrique){
 
-    private var commandList: HashMap<String, Command> = HashMap()
+    private var commandList = HashMap<String, AbsctractCommand>()
+
 
     init {
-        doMap()
+        makeListOfCommands()
     }
 
-    private fun doMap() {
+    /**
+     * make the list of the commands
+     *
+     */
+    private fun makeListOfCommands() {
         commandList["help"] = Help()
         commandList["info"] = Info()
         commandList["show"] = Show()
@@ -33,25 +43,43 @@ class CommandExecuter{
         commandList["execute_script -delecate"] = ExecuteScriptDelecate()
     }
 
+    /**
+     * Check and do the executing of the command
+     *
+     * @param str1
+     * @param str2
+     * @return the result of the command
+     */
     fun executeCommand(str1: String, str2: String): Boolean? {
         if (checkCommand(str1)) {
-            if (checkSymbols(str1, str2)) {
-                println("Используется команда $str1")
-                commandList[str1]?.execute(str2).let {
-                    if (it?.message != null) println(it.message)
-                    return it?.commandComplicated
+            println("Используется команда $str1")
+            commandList[str1]?.execute((str2 + " " + fabrique.askForCommandArguments(str1)).trim()).let {
+                if (it?.message != null) println(it.message)
+                return it?.commandComplicated
                 }
-            } else return false
         } else {
             println("error: Неправильно введена команда!")
             return false
         }
     }
 
+    /**
+     * check if the command exists
+     *
+     * @param str
+     * @return exists the command or not
+     */
     fun checkCommand(str: String): Boolean {
         return commandList.containsKey(str)
     }
 
+    /**
+     * Check the argument after the command
+     *
+     * @param str1
+     * @param str2
+     * @return true argument or not
+     */
     fun checkSymbols(str1: String, str2: String): Boolean {
         if (str1 in listOf("help", "info", "show", "add", "clear", "save", "exit", "add_if_min", "remove_greater", "remove_lower", "average_of_oscars_count", "print_field_descending_oscars_count")) {
             return if (str2.isEmpty()) {
@@ -90,9 +118,15 @@ class CommandExecuter{
         return false
     }
 
-    fun help() {
+    /**
+     * print names and explanations of all the commands
+     *
+     */
+    fun help(): String {
+        var listOfCommands = ""
         for (command in commandList) {
-            println(command.value.getName() + ": " + command.value.getExplanationOfCommand())
+            listOfCommands += command.value.getName() + ": " + command.value.getExplanationOfCommand() + "\n"
         }
+        return listOfCommands.substring(0, listOfCommands.length - 2)
     }
 }

@@ -1,11 +1,17 @@
 package collection
 
+/**
+ * Enum with genre of movie
+ */
 enum class MovieGenre {
     COMEDY,
     FANTASY,
     SCIENCE_FICTION;
 
     companion object {
+        /**
+         * @return String with enums of this class
+         */
         fun getEnums(): String {
             var strEnums = ""
             for (genre in values()) {

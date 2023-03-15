@@ -2,6 +2,13 @@ package collection
 
 import kotlinx.serialization.Serializable
 
+/**
+ * Coordinates of the movie
+ *
+ * @property x
+ * @property y
+ * @constructor Create Coordinates
+ */
 @Serializable
 data class Coordinates(private var x: Float,
                        private var y: Int

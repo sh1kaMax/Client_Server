@@ -1,5 +1,5 @@
 package utility
-import asker
+
 import collection.Movie
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -10,19 +10,37 @@ import java.io.FileWriter
 import java.io.IOException
 import java.util.*
 
-class FileManager(private var name: String) {
-    private val json: Json = Json
+/**
+ * File manager
+ *
+ * @property name
+ * @property fabrique
+ * @constructor Create File manager
+ */
+class FileManager(private var name: String,
+                  private var fabrique: Fabrique
+                  ) {
 
+
+    /**
+     * Write collection on the file
+     *
+     * @param collection
+     */
     fun writeCollection(collection: TreeSet<Movie>) {
         try {
             val list = ArrayList(collection)
-            FileWriter(name).use { it.write(json.encodeToString(list)) }
-            println("Коллекция сохранена на файл")
+            FileWriter(name).use { it.write(Json.encodeToString(list)) }
         } catch (e: IOException) {
             println("error: Невозможно сохранить!")
         }
     }
 
+    /**
+     * Read collection from the file
+     *
+     * @return collection
+     */
     fun readCollection(): TreeSet<Movie> {
         var fileReader: FileReader
         while (true) {
@@ -31,7 +49,7 @@ class FileManager(private var name: String) {
                 break
             } catch (e: FileNotFoundException) {
                 println("error: Файла с таким названием нету!")
-                setName(asker.askForFileName())
+                setName(fabrique.askForFileName())
             }
         }
         var char: Int
@@ -43,9 +61,14 @@ class FileManager(private var name: String) {
             }
             input += char.toChar()
         } while (true)
-        return TreeSet(json.decodeFromString<List<Movie>>(input))
+        return TreeSet(Json.decodeFromString<List<Movie>>(input))
     }
 
+    /**
+     * Set name
+     *
+     * @param name
+     */
     private fun setName(name: String) {
         this.name = name
     }
