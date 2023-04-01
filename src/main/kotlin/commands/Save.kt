@@ -11,6 +11,6 @@ import utility.CommandResult
 class Save: AbsctractCommand("save", "сохранить коллекцию в файл") {
 
     override fun execute(str: String): CommandResult{
-        return CommandResult(true, requestManager.saveRequest(str))
+        return requestManager.saveRequest(str)
     }
 }

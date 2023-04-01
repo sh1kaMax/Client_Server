@@ -12,6 +12,6 @@ import utility.CommandResult
 class Exit: AbsctractCommand("exit", "завершить программу (без сохранения в файл)") {
 
     override fun execute(str: String): CommandResult {
-        return CommandResult(true, requestManager.exitRequest(str))
+        return requestManager.exitRequest(str)
     }
 }

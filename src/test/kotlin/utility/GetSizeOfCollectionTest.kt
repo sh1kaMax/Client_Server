@@ -9,7 +9,7 @@ import java.util.*
 import kotlin.test.assertEquals
 
 class GetSizeOfCollectionTest {
-private var fileManager = FileManager("lab5.json", fabrique = Fabrique(Scanner(System.`in`)))
+    private var fileManager = FileManager("lab5.json", fabrique = Fabrique(Scanner(System.`in`)))
     private val collectionManager = CollectionManager(fileManager.readCollection())
 
     @Test

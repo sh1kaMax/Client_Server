@@ -12,7 +12,7 @@ import java.util.*
  */
 class CommandExecuter(private var fabrique: Fabrique){
 
-    private var commandList = HashMap<String, AbsctractCommand>()
+    private var commandList = LinkedHashMap<String, AbsctractCommand>()
 
 
     init {
@@ -33,6 +33,7 @@ class CommandExecuter(private var fabrique: Fabrique){
         commandList["clear"] = Clear()
         commandList["save"] = Save()
         commandList["execute_script"] = ExecuteScript()
+        commandList["execute_script -delecate"] = ExecuteScriptDelecate()
         commandList["exit"] = Exit()
         commandList["add_if_min"] = AddIfMinOscarsCount()
         commandList["remove_greater"] = RemoveGreaterCountOfOscars()
@@ -40,7 +41,6 @@ class CommandExecuter(private var fabrique: Fabrique){
         commandList["average_of_oscars_count"] = CountAvarageOfOscars()
         commandList["count_greater_than_genre"] = CountGenresGreater()
         commandList["print_field_descending_oscars_count"] = PrintOscarsCountsInDescending()
-        commandList["execute_script -delecate"] = ExecuteScriptDelecate()
     }
 
     /**

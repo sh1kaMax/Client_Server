@@ -87,7 +87,7 @@ class ConsoleManager(
         try {
             var exitIsThere = false
             var recursionIsThere = false
-            var continueDoingScript = true
+            var continueDoingScriptCounter = 0
 
             val file = File(str)
             val scanFile = Scanner(file)
@@ -95,7 +95,7 @@ class ConsoleManager(
             fabrique.setScan(Scanner(System.`in`))
             var newInput: Array<String>
 
-            while (scanFile.hasNextLine() && continueDoingScript) {
+            while (scanFile.hasNextLine() && continueDoingScriptCounter >= 0) {
                 newInput = (scanFile.nextLine().trim() + " ").split(" ").toTypedArray()
                 if ((newInput.size == 3 || newInput.size == 4) && newInput[1][0].toString() == "-") {
                     if (commandExecuter.checkCommand(newInput[0] + " " + newInput[1])) {
@@ -103,28 +103,29 @@ class ConsoleManager(
                             when (newInput[0] + " " + newInput[1]) {
                                 "execute_script -delecate" -> {recursionIsThere =  true}
                             }
-                        } else continueDoingScript = false
-                    } else continueDoingScript = false
+                        } else continueDoingScriptCounter -= 1
+                    } else continueDoingScriptCounter -= 1
                 } else {
                     if (commandExecuter.checkCommand(newInput[0])) {
                         if (commandExecuter.checkSymbols(newInput[0], newInput[1])) {
                             when (newInput[0]) {
                                 "exit" -> {exitIsThere = true}
                                 "execute_script" -> {recursionIsThere = true}
+                                "add" -> {continueDoingScriptCounter += 12}
                             }
-                        }else continueDoingScript = false
-                    } else continueDoingScript = false
+                        }else continueDoingScriptCounter -= 1
+                    } else continueDoingScriptCounter -= 1
                 }
             }
             if (exitIsThere) {
-                if (!fabrique.askQuestion("В скрипте есть выход из программы, выполнить скрипт?")) continueDoingScript = false
+                if (!fabrique.askQuestion("В скрипте есть выход из программы, выполнить скрипт?")) continueDoingScriptCounter -= 1
             }
 
             if (recursionIsThere) {
-                if (!fabrique.askQuestion("В скрипте есть рекурсия, выполнить скрипт?")) continueDoingScript = false
+                if (!fabrique.askQuestion("В скрипте есть рекурсия, выполнить скрипт?")) continueDoingScriptCounter -= 1
             }
 
-            if (continueDoingScript) {
+            if (continueDoingScriptCounter == 0) {
                 scriptMode(str)
             } else println("скрипт отменен")
 

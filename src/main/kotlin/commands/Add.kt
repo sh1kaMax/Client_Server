@@ -11,6 +11,6 @@ import utility.CommandResult
 class Add: AbsctractCommand("add {element}", "добавить новый элемент в коллекцию") {
 
     override fun execute(str: String): CommandResult {
-        return CommandResult(true, requestManager.addRequest(null, str))
+        return requestManager.addRequest(null, str)
     }
 }

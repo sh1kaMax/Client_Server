@@ -11,6 +11,6 @@ import utility.CommandResult
 class Info : AbsctractCommand("info", "вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.") {
 
     override fun execute(str: String): CommandResult {
-        return CommandResult(true, requestManager.infoRequest(str))
+        return requestManager.infoRequest(str)
     }
 }

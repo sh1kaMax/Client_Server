@@ -10,6 +10,6 @@ import utility.CommandResult
 class Help: AbsctractCommand("help", "вывести справку по доступным командам") {
 
     override fun execute(str: String): CommandResult{
-        return CommandResult(true, requestManager.helpRequest(str))
+        return requestManager.helpRequest(str)
     }
 }

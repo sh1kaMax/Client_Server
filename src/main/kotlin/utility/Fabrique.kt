@@ -1,7 +1,6 @@
 package utility
 
 import collection.Color
-import collection.Coordinates
 import collection.MovieGenre
 import collection.MpaaRating
 import exceptions.IsEmptyException
@@ -60,7 +59,7 @@ class Fabrique(private var scan: Scanner) {
      *
      * @return name of the movie
      */
-    fun askForMovieName(): String {
+    private fun askForMovieName(): String {
         var movieName: String
         while(true){
             try {
@@ -203,22 +202,11 @@ class Fabrique(private var scan: Scanner) {
     }
 
     /**
-     * Ask for coordinates
-     *
-     * @return coordinates of the movie
-     */
-    fun askForCoordinates(): Coordinates {
-        val x = askForX()
-        val y = askForY()
-        return Coordinates(x, y)
-    }
-
-    /**
      * Ask for oscars count
      *
      * @return oscars count of the movie
      */
-    fun askForOscarsCount(): Int {
+    private fun askForOscarsCount(): Int {
         var oscarsStr: String
         var oscars: Int
         while (true) {
@@ -245,7 +233,7 @@ class Fabrique(private var scan: Scanner) {
      *
      * @return genre of the movie
      */
-    fun askForGenre(): MovieGenre {
+    private fun askForGenre(): MovieGenre {
         var genreStr: String
         var genre: MovieGenre
         while (true) {
@@ -272,7 +260,7 @@ class Fabrique(private var scan: Scanner) {
      *
      * @return rating of the movie
      */
-    fun askForRating(): MpaaRating {
+    private fun askForRating(): MpaaRating {
         var ratingStr: String
         var rating: MpaaRating
         while (true) {
@@ -326,7 +314,7 @@ class Fabrique(private var scan: Scanner) {
      *
      * @return director of the movie
      */
-    fun askForPerson(): String {
+    private fun askForDirectorBirthday(): String {
         var birthday: Array<String>
         while (true){
             try {
@@ -344,7 +332,6 @@ class Fabrique(private var scan: Scanner) {
             }
         }
         return birthday[2] + " " + birthday[1] + " " + birthday[0]
-//        return Person(personName, ZonedDateTime.of(birthday[2].toInt(), birthday[1].toInt(), birthday[0].toInt(), 0, 0, 0, 0, ZoneId.systemDefault()), color, Location(x, y2, z))
     }
 
     /**
@@ -369,59 +356,10 @@ class Fabrique(private var scan: Scanner) {
         return answer == "yes"
     }
 
-    /**
-     * Ask for oscars to remove greater
-     *
-     * @return oscars
-     */
-    fun askForOscarsToRemoveGreater(): Int {
-        var oscarsStr: String
-        var oscars: Int
-        while (true) {
-            try {
-                print("Введите количество оскаров, больше которого не может быть у элементов коллекции:\n>")
-                oscarsStr = scan.nextLine().trim()
-                if (oscarsStr == "") throw IsEmptyException()
-                oscars = oscarsStr.toInt()
-                if (oscars < minOscarsCount) throw NotInLimitException()
-                break
-            } catch (e: IsEmptyException) {
-                println("error: Количетво не может быть пустым!")
-            } catch (e: NumberFormatException) {
-                println("error: Количество должно быть числом")
-            }
-        }
-        return oscars
-    }
-
-    /**
-     * Ask for oscars to remove lower
-     *
-     * @return oscars
-     */
-    fun askForOscarsToRemoveLower(): Int {
-        var oscarsStr: String
-        var oscars: Int
-        while (true) {
-            try {
-                print("Введите количество оскаров, меньше которого не может быть у элементов коллекции:\n>")
-                oscarsStr = scan.nextLine().trim()
-                if (oscarsStr == "") throw IsEmptyException()
-                oscars = oscarsStr.toInt()
-                if (oscars < minOscarsCount) throw NotInLimitException()
-                break
-            } catch (e: IsEmptyException) {
-                println("error: Количетво не может быть пустым!")
-            } catch (e: NumberFormatException) {
-                println("error: Количество должно быть числом")
-            }
-        }
-        return oscars
-    }
 
     fun askForCommandArguments(str1: String): String {
         if (str1 in listOf("add", "add_if_min", "update")) {
-            return askForMovieName()+ " " + askForX() + " " + askForY() + " " + askForOscarsCount() + " " + askForGenre() + " " + askForRating() + " " + askForDirectorName() + " " + askForPerson() + " " + askForEyeColor() + " " + askForX() + " " + askForY() + " " + askForZ()
+            return askForMovieName()+ " " + askForX() + " " + askForY() + " " + askForOscarsCount() + " " + askForGenre() + " " + askForRating() + " " + askForDirectorName() + " " + askForDirectorBirthday() + " " + askForEyeColor() + " " + askForX() + " " + askForY() + " " + askForZ()
         }
         if (str1 in listOf("remove_greater", "remove_lower")) {
             return askForOscarsCount().toString()

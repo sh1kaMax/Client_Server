@@ -22,6 +22,6 @@ class InfoRequestTest {
                 " Размер коллекции: " + collectionManager.getCollectionSize() + "\n" +
                 " Дата и время последнего сохранения: " + collectionManager.getLastSaveTime() + "\n" +
                 " Дата и время последней иницилизации: " + collectionManager.getLastInitTime(),
-            requestManager.infoRequest(""))
+            requestManager.infoRequest("").message)
     }
 }
