@@ -6,7 +6,7 @@ import java.util.*
 import kotlin.test.assertEquals
 
 class HelpTest {
-    private var testCommandList = HashMap<String, AbsctractCommand>()
+    private var testCommandList = LinkedHashMap<String, AbsctractCommand>()
     private var testList = ""
     private val commandExecuter = CommandExecuter(fabrique = Fabrique(Scanner(System.`in`)))
 
@@ -20,6 +20,7 @@ class HelpTest {
         testCommandList["clear"] = Clear()
         testCommandList["save"] = Save()
         testCommandList["execute_script"] = ExecuteScript()
+        testCommandList["execute_script -delecate"] = ExecuteScriptDelecate()
         testCommandList["exit"] = Exit()
         testCommandList["add_if_min"] = AddIfMinOscarsCount()
         testCommandList["remove_greater"] = RemoveGreaterCountOfOscars()
@@ -27,7 +28,6 @@ class HelpTest {
         testCommandList["average_of_oscars_count"] = CountAvarageOfOscars()
         testCommandList["count_greater_than_genre"] = CountGenresGreater()
         testCommandList["print_field_descending_oscars_count"] = PrintOscarsCountsInDescending()
-        testCommandList["execute_script -delecate"] = ExecuteScriptDelecate()
 
         for (command in testCommandList) {
             testList += command.value.getName() + ": " + command.value.getExplanationOfCommand() + "\n"

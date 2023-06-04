@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bb8252aa-7572-4433-ae56-285099c7756a" name="Changes" comment="commit">
+      <change afterPath="$PROJECT_DIR$/TODO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shika" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/commands/InfoTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/commands/AbsctractCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/commands/AbsctractCommand.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/commands/Show.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/commands/Show.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/utility/CollectionManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/utility/CollectionManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/utility/ConsoleManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/utility/ConsoleManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MainKt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/commands/AbsctractCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/commands/AbsctractCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/commands/UpdateById.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/commands/UpdateById.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utility/Asker$Companion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utility/Asker$Companion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utility/Asker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utility/Asker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utility/CollectionManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utility/CollectionManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utility/ConsoleManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utility/ConsoleManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utility/FileManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utility/FileManager.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Enum" />
+        <option value="Kotlin Interface" />
+        <option value="Class" />
+        <option value="Kotlin Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KotlinCodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2LjCiYc2XGqNNexeLWadUbzRtfy" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "C:/Users/Shikm/Dropbox/прога/лаб5/lab5",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="collection" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="commands" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Kotlin.MainKt">
+    <configuration name="InfoTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="lab5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="commands.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="commands" />
+      <option name="MAIN_CLASS_NAME" value="commands.InfoTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainKt" />
+      <module name="lab5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotlin.MainKt" />
+        <item itemvalue="JUnit.InfoTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bb8252aa-7572-4433-ae56-285099c7756a" name="Changes" comment="" />
+      <created>1676375239311</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1676375239311</updated>
+      <workItem from="1676375240472" duration="21163000" />
+      <workItem from="1676449632365" duration="19786000" />
+      <workItem from="1676552000348" duration="3210000" />
+      <workItem from="1676560205335" duration="720000" />
+      <workItem from="1676712330209" duration="9051000" />
+      <workItem from="1676731624189" duration="5693000" />
+      <workItem from="1676804179733" duration="16066000" />
+      <workItem from="1676887768031" duration="23197000" />
+      <workItem from="1676972821077" duration="25411000" />
+      <workItem from="1677051991795" duration="450000" />
+      <workItem from="1677104916601" duration="331000" />
+      <workItem from="1677413930690" duration="926000" />
+      <workItem from="1677429853480" duration="485000" />
+      <workItem from="1677508449452" duration="15117000" />
+      <workItem from="1677524329679" duration="320000" />
+      <workItem from="1677571583590" duration="13395000" />
+      <workItem from="1677587928894" duration="852000" />
+      <workItem from="1677668524720" duration="5733000" />
+      <workItem from="1678372654144" duration="642000" />
+      <workItem from="1678373873437" duration="1314000" />
+      <workItem from="1678859361093" duration="668000" />
+    </task>
+    <task id="LOCAL-00001" summary="commit">
+      <created>1677418552729</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1677418552729</updated>
+    </task>
+    <task id="LOCAL-00002" summary="commit">
+      <created>1677418678428</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1677418678428</updated>
+    </task>
+    <task id="LOCAL-00003" summary="commit">
+      <created>1677418759875</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677418759875</updated>
+    </task>
+    <task id="LOCAL-00004" summary="commit">
+      <created>1677524590769</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1677524590769</updated>
+    </task>
+    <task id="LOCAL-00005" summary="commit">
+      <created>1677584942649</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1677584942649</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ClassCastException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

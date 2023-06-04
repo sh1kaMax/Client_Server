@@ -12,7 +12,7 @@ private var fileManager = FileManager("lab5.json", fabrique = Fabrique(Scanner(S
 
     @Test
     fun testGetById() {
-        assertAll("collectionManager",
+        assertAll("getCollectionManager",
             Executable { assertEquals(collectionManager.getMoviesCollection().find { movie -> movie.getId() == 2 }, collectionManager.getById(2)) },
             Executable { assertEquals(collectionManager.getMoviesCollection().find { movie -> movie.getId() == 7 }, collectionManager.getById(7))},
             Executable { assertEquals(collectionManager.getMoviesCollection().find { movie -> movie.getId() == 123 }, collectionManager.getById(123))}
